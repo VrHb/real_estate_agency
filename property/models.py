@@ -58,7 +58,6 @@ class Flat(models.Model):
         blank=True,
         db_index=True
     )
-    
     likes = models.ManyToManyField(
         User, 
         verbose_name='Кто лайкнул',
@@ -73,4 +72,16 @@ class Appeal(models.Model):
     who_appeal = models.ForeignKey(User, on_delete=models.CASCADE)
     flat = models.ForeignKey(Flat, on_delete=models.CASCADE)
     text = models.TextField()
-'''some change'''
+
+class Owner(models.Model):
+    name = models.CharField('ФИО владельца', max_length=200)
+    pure_number = PhoneNumberField(
+        'Нормализованный номер владельца',
+        blank=True
+    )
+    phonenumber = models.CharField('Номер владельца', max_length=20)
+    flats = models.ManyToManyField(
+        Flat,
+        verbose_name='Квартиры в собственности',
+        related_name='Owner_flats'
+    )
