@@ -73,3 +73,4 @@ class Appeal(models.Model):
     who_appeal = models.ForeignKey(User, on_delete=models.CASCADE)
     flat = models.ForeignKey(Flat, on_delete=models.CASCADE)
     text = models.TextField()
+'''some change'''
