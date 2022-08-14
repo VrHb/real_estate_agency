@@ -74,14 +74,16 @@ class Appeal(models.Model):
     text = models.TextField()
 
 class Owner(models.Model):
-    name = models.CharField('ФИО владельца', max_length=200)
+    name = models.CharField('ФИО владельца', max_length=200, db_index=True)
     pure_number = PhoneNumberField(
         'Нормализованный номер владельца',
-        blank=True
+        blank=True,
+        db_index=True
     )
-    phonenumber = models.CharField('Номер владельца', max_length=20)
+    phonenumber = models.CharField('Номер владельца', max_length=20, db_index=True)
     flats = models.ManyToManyField(
         Flat,
+        db_index=True,
         verbose_name='Квартиры в собственности',
         related_name='Owner_flats'
     )
