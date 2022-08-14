@@ -17,8 +17,16 @@ class FlatAdmin(admin.ModelAdmin):
 class AppealAdmin(admin.ModelAdmin):
     raw_id_fields = ("flat", "who_appeal",)
 
+class FlatsInline(admin.TabularInline):
+    model = Flat.who_owner.through
+    raw_id_fields = [
+        "flat",
+        "owner"
+    ]
+
 class OwnerAdmin(admin.ModelAdmin):
     raw_id_fields = ("flats",)
+    inlines = [FlatsInline]
 
 admin.site.register(Flat, FlatAdmin)
 admin.site.register(Appeal, AppealAdmin)
