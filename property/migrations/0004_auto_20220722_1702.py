@@ -9,8 +9,8 @@ def fill_new_building_field(apps, schema_editor):
     for building in buildings:
         if building.construction_year >= 2015:
             building.new_building = True
-            building.save()
-        building.new_building = False
+        else:
+            building.new_building = False
         building.save()
 
 
