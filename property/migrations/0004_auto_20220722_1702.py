@@ -5,7 +5,11 @@ from django.db import migrations
 
 def fill_new_building_field(apps, schema_editor):
     Flat = apps.get_model('property', 'Flat')
-    new_buildings = Flat.objects.filter(construction_year__gt=2015)
+    old_buildings = Flat.objects.filter(construction_year__lt=2015)
+    for building in old_buildings.iterator():
+        building.new_building = False
+        building.save()
+    new_buildings = Flat.objects.filter(construction_year__gt=2014)
     for building in new_buildings.iterator():
         building.new_building = True
         building.save()
@@ -14,7 +18,7 @@ def fill_new_building_field(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('property', '0003_auto_20220722_1626'),
+        ('property', '0002_flat_new_buildings'),
     ]
 
     operations = [
