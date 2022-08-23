@@ -10,7 +10,7 @@ def fill_flats_in_owners(apps, schema_editor):
     owners = Owner.objects.all()
     for owner in owners.iterator():
         finded_flats = Flat.objects.filter(owner=owner.name)
-        owner.flats.set(finded_flats)  # or maybe use owner.flats.add(finded_flats)
+        owner.flats.set(finded_flats) 
 
 class Migration(migrations.Migration):
 
