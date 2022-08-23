@@ -17,7 +17,7 @@ class AppealAdmin(admin.ModelAdmin):
     raw_id_fields = ("flat", "who_appeal",)
 
 class FlatsInline(admin.TabularInline):
-    model = Flat.who_owner.through
+    model = Flat.owners.through
     raw_id_fields = [
         "flat",
         "owner"

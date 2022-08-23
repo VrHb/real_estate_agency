@@ -89,7 +89,7 @@ class Owner(models.Model):
         Flat,
         db_index=True,
         verbose_name='Квартиры в собственности',
-        related_name='who_owner'
+        related_name='owners'
     )
 
     def __str__(self):
