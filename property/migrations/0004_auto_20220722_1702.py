@@ -18,7 +18,7 @@ def fill_new_building_field(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('property', '0002_flat_new_buildings'),
+        ('property', '0002_flat_new_building'),
     ]
 
     operations = [
