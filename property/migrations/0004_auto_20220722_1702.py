@@ -6,7 +6,7 @@ from django.db import migrations
 def fill_new_building_field(apps, schema_editor):
     Flat = apps.get_model('property', 'Flat')
     new_buildings = Flat.objects.filter(construction_year__gt=2015)
-    for building in new_buildings:
+    for building in new_buildings.iterator():
         building.new_building = True
         building.save()
 
