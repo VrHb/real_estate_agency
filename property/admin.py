@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from .models import Flat, Appeal, Owner
 
-
+@admin.register(Flat)
 class FlatAdmin(admin.ModelAdmin):
     search_fields = ("town", "address", "owner")
     readonly_fields = ["created_at"]
@@ -13,8 +13,11 @@ class FlatAdmin(admin.ModelAdmin):
     list_filter = ["new_building", "rooms_number", "has_balcony"]
     raw_id_fields = ("likes",)
 
+@admin.register(Appeal)
 class AppealAdmin(admin.ModelAdmin):
     raw_id_fields = ("flat", "who_appeal",)
+
+
 
 class FlatsInline(admin.TabularInline):
     model = Flat.owners.through
@@ -23,10 +26,8 @@ class FlatsInline(admin.TabularInline):
         "owner"
     ]
 
+@admin.register(Owner)
 class OwnerAdmin(admin.ModelAdmin):
     raw_id_fields = ("flats",)
     inlines = [FlatsInline]
 
-admin.site.register(Flat, FlatAdmin)
-admin.site.register(Appeal, AppealAdmin)
-admin.site.register(Owner, OwnerAdmin)
