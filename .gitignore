@@ -1,3 +1,7 @@
+# remove migrations
+/property/migrations/0005_auto_20220725_1327.py
+/property/migrations/0003_auto_20220722_1626.py
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
