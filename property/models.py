@@ -63,9 +63,17 @@ class Flat(models.Model):
         return f'{self.town}, {self.address} ({self.price}р.)'
 
 class Appeal(models.Model):
-    who_appeal = models.ForeignKey(User, on_delete=models.CASCADE)
-    flat = models.ForeignKey(Flat, on_delete=models.CASCADE)
-    text = models.TextField()
+    who_appeal = models.ForeignKey(
+        User,
+        verbose_name='Владелец',
+        on_delete=models.CASCADE
+    )
+    flat = models.ForeignKey(
+        Flat,
+        verbose_name='Квартира',
+        on_delete=models.CASCADE
+    )
+    text = models.TextField('Текст заявки')
 
 class Owner(models.Model):
     name = models.CharField('ФИО владельца', max_length=200, db_index=True)
