@@ -65,12 +65,14 @@ class Flat(models.Model):
 class Appeal(models.Model):
     who_appeal = models.ForeignKey(
         User,
-        verbose_name='Владелец',
+        verbose_name='Арендатор',
+        related_name='appeals',
         on_delete=models.CASCADE
     )
     flat = models.ForeignKey(
         Flat,
         verbose_name='Квартира',
+        related_name='appeals',
         on_delete=models.CASCADE
     )
     text = models.TextField('Текст заявки')
